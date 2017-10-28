@@ -4,3 +4,4 @@ source "https://rubygems.org"
 
 gem 'sinatra', '~> 1.4', '>= 1.4.7'
 gem 'rubocop', '~> 0.39.0'
+gem 'rspec', '~> 3.4'

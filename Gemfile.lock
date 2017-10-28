@@ -2,6 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     ast (2.3.0)
+    diff-lcs (1.3)
     parser (2.4.0.0)
       ast (~> 2.2)
     powerpack (0.1.1)
@@ -11,6 +12,19 @@ GEM
     rainbow (2.2.2)
       rake
     rake (12.2.1)
+    rspec (3.7.0)
+      rspec-core (~> 3.7.0)
+      rspec-expectations (~> 3.7.0)
+      rspec-mocks (~> 3.7.0)
+    rspec-core (3.7.0)
+      rspec-support (~> 3.7.0)
+    rspec-expectations (3.7.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.7.0)
+    rspec-mocks (3.7.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.7.0)
+    rspec-support (3.7.0)
     rubocop (0.39.0)
       parser (>= 2.3.0.7, < 3.0)
       powerpack (~> 0.1)
@@ -29,8 +43,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  rspec (~> 3.4)
   rubocop (~> 0.39.0)
   sinatra (~> 1.4, >= 1.4.7)
 
 BUNDLED WITH
-   1.12.5
+   1.15.4
