@@ -2,43 +2,52 @@ require './lib/compute_checksum'
 
 RSpec.describe ComputeChecksum do
   describe '.call' do
-    context 'example 1' do
-      let(:expected) do
-        {
-          count_of_original_words: 7,
-          count_of_newly_created_words: 4,
-          count_of_upper_case_vowels: 5,
-          count_of_consonants: 21,
-          length_of_original_string: 37
-        }
-      end
-      let(:string) { 'foo bar baz wibble fizzbuzz fizz buzz' }
-      subject { described_class.call(string: string) }
+    context 'when a string is not provided' do
+      subject { described_class.call }
 
-      it 'returns a hash of all checksums' do
-        expect(subject).to eq(expected)
+      it 'raises an error' do
+        expect { subject }.to raise_error(ArgumentError)
       end
     end
 
-    context 'example 2' do
-      let(:expected) do
-        {
-          count_of_original_words: 9,
-          count_of_newly_created_words: 4,
-          count_of_upper_case_vowels: 3,
-          count_of_consonants: 24,
-          length_of_original_string: 43
-        }
-      end
-      let(:string) { 'The quick brown fox jumps over the lazy dog' }
-      subject { described_class.call(string: string) }
+    context 'when a string is provided' do
+      context 'example 1' do
+        let(:expected) do
+          {
+            count_of_original_words: 7,
+            count_of_newly_created_words: 4,
+            count_of_upper_case_vowels: 5,
+            count_of_consonants: 21,
+            length_of_original_string: 37
+          }
+        end
+        let(:string) { 'foo bar baz wibble fizzbuzz fizz buzz' }
+        subject { described_class.call(string: string) }
 
-      it 'returns a hash of all checksums' do
-        expect(subject).to eq(expected)
+        it 'returns a hash of all checksums' do
+          expect(subject).to eq(expected)
+        end
+      end
+
+      context 'example 2' do
+        let(:expected) do
+          {
+            count_of_original_words: 9,
+            count_of_newly_created_words: 4,
+            count_of_upper_case_vowels: 3,
+            count_of_consonants: 24,
+            length_of_original_string: 43
+          }
+        end
+        let(:string) { 'The quick brown fox jumps over the lazy dog' }
+        subject { described_class.call(string: string) }
+
+        it 'returns a hash of all checksums' do
+          expect(subject).to eq(expected)
+        end
       end
     end
   end
-
   describe '#remove_non_english_alphabet_characters' do
     let(:string) { 'здравейте The fiv5e boxing wizards jump quick#ly' }
     let(:expected) { ' The five boxing wizards jump quickly' }
