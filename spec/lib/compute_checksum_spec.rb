@@ -48,62 +48,65 @@ RSpec.describe ComputeChecksum do
       end
     end
   end
-  describe '#remove_non_english_alphabet_characters' do
-    let(:string) { 'здравейте The fiv5e boxing wizards jump quick#ly' }
-    let(:expected) { ' The five boxing wizards jump quickly' }
-    subject do
-      described_class.new(string: string).remove_non_english_alphabet_characters
-    end
 
-    it 'removes characters that do not belong to the English alphabet' do
-      expect(subject).to eq(expected)
-    end
-  end
+  context 'modifications' do
+    describe '#remove_non_english_alphabet_characters' do
+      let(:string) { 'здравейте The fiv5e boxing wizards jump quick#ly' }
+      let(:expected) { ' The five boxing wizards jump quickly' }
+      subject do
+        described_class.new(string: string).remove_non_english_alphabet_characters
+      end
 
-  describe '#split_into_limited_characters_strings' do
-    let(:string) { 'The five boxing wizards jump quickly' }
-    let(:expected) { 'Thefivebox ingwizards jumpquickl y' }
-    subject do
-      described_class.new(string: string).split_into_limited_characters_strings
-    end
-
-    it 'creates words which are 10 characters long' do
-      expect(subject).to eq(expected)
-    end
-  end
-
-  describe '#capitalize_each_word' do
-    let(:string) { 'The five    boxing wizards jump quickly' }
-    let(:expected) { 'The Five    Boxing Wizards Jump Quickly' }
-    subject { described_class.new(string: string).capitalize_each_word }
-
-    it 'capitalizes each word' do
-      expect(subject).to eq(expected)
-    end
-  end
-
-  describe '#upcase_vowel_after_consonants_and_upcase_vowel' do
-    subject do
-      described_class
-        .new(string: string)
-        .upcase_vowel_after_consonants_and_upcase_vowel
-    end
-
-    context 'when preceeding consonants are next to each other' do
-      let(:string) { 'Thequickbr Ownfoxjump Soverthela Zydog' }
-      let(:expected) { 'Thequickbr OwnfOxjUmp Soverthela Zydog' }
-
-      it 'upcases the vowel' do
+      it 'removes characters that do not belong to the English alphabet' do
         expect(subject).to eq(expected)
       end
     end
 
-    context 'when preceeding consonants are separated by a whitespace' do
-      let(:string) { 'childrEn do need freedom' }
-      let(:unexpected) { 'childrEn dO need freedom' }
+    describe '#split_into_limited_characters_strings' do
+      let(:string) { 'The five boxing wizards jump quickly' }
+      let(:expected) { 'Thefivebox ingwizards jumpquickl y' }
+      subject do
+        described_class.new(string: string).split_into_limited_characters_strings
+      end
 
-      it 'does not upcase the vowel' do
-        expect(subject).not_to eq(unexpected)
+      it 'creates words which are 10 characters long' do
+        expect(subject).to eq(expected)
+      end
+    end
+
+    describe '#capitalize_each_word' do
+      let(:string) { 'The five    boxing wizards jump quickly' }
+      let(:expected) { 'The Five    Boxing Wizards Jump Quickly' }
+      subject { described_class.new(string: string).capitalize_each_word }
+
+      it 'capitalizes each word' do
+        expect(subject).to eq(expected)
+      end
+    end
+
+    describe '#upcase_vowel_after_consonants_and_upcase_vowel' do
+      subject do
+        described_class
+          .new(string: string)
+          .upcase_vowel_after_consonants_and_upcase_vowel
+      end
+
+      context 'when preceeding consonants are next to each other' do
+        let(:string) { 'Thequickbr Ownfoxjump Soverthela Zydog' }
+        let(:expected) { 'Thequickbr OwnfOxjUmp Soverthela Zydog' }
+
+        it 'upcases the vowel' do
+          expect(subject).to eq(expected)
+        end
+      end
+
+      context 'when preceeding consonants are separated by a whitespace' do
+        let(:string) { 'childrEn do need freedom' }
+        let(:unexpected) { 'childrEn dO need freedom' }
+
+        it 'does not upcase the vowel' do
+          expect(subject).not_to eq(unexpected)
+        end
       end
     end
   end
