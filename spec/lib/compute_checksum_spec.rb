@@ -9,7 +9,7 @@ RSpec.describe ComputeChecksum do
           count_of_newly_created_words: 4,
           count_of_upper_case_vowels: 5,
           count_of_consonants: 21,
-          length_of_original_string: 37,
+          length_of_original_string: 37
         }
       end
       let(:string) { 'foo bar baz wibble fizzbuzz fizz buzz' }
@@ -27,7 +27,7 @@ RSpec.describe ComputeChecksum do
           count_of_newly_created_words: 4,
           count_of_upper_case_vowels: 3,
           count_of_consonants: 24,
-          length_of_original_string: 43,
+          length_of_original_string: 43
         }
       end
       let(:string) { 'The quick brown fox jumps over the lazy dog' }
@@ -42,7 +42,9 @@ RSpec.describe ComputeChecksum do
   describe '#remove_non_english_alphabet_characters' do
     let(:string) { 'здравейте The fiv5e boxing wizards jump quick#ly' }
     let(:expected) { ' The five boxing wizards jump quickly' }
-    subject { described_class.new(string: string).remove_non_english_alphabet_characters }
+    subject do
+      described_class.new(string: string).remove_non_english_alphabet_characters
+    end
 
     it 'removes characters that do not belong to the English alphabet' do
       expect(subject).to eq(expected)
@@ -52,7 +54,9 @@ RSpec.describe ComputeChecksum do
   describe '#split_into_limited_characters_strings' do
     let(:string) { 'The five boxing wizards jump quickly' }
     let(:expected) { 'Thefivebox ingwizards jumpquickl y' }
-    subject { described_class.new(string: string).split_into_limited_characters_strings }
+    subject do
+      described_class.new(string: string).split_into_limited_characters_strings
+    end
 
     it 'creates words which are 10 characters long' do
       expect(subject).to eq(expected)
@@ -70,7 +74,11 @@ RSpec.describe ComputeChecksum do
   end
 
   describe '#upcase_vowel_after_consonants_and_upcase_vowel' do
-    subject { described_class.new(string: string).upcase_vowel_after_consonants_and_upcase_vowel }
+    subject do
+      described_class
+        .new(string: string)
+        .upcase_vowel_after_consonants_and_upcase_vowel
+    end
 
     context 'when preceeding consonants are next to each other' do
       let(:string) { 'Thequickbr Ownfoxjump Soverthela Zydog' }
