@@ -1,0 +1,13 @@
+%h2 Checksum form
+
+%form{ action: '/compute', method: :post }
+  %textarea{ name: 'string', required: true }
+    = @string
+  %input{ type: 'submit' }
+
+- if @checksum
+  #{@checksum[:count_of_original_words]} - |
+  #{@checksum[:count_of_newly_created_words]} - |
+  #{@checksum[:count_of_upper_case_vowels]} - |
+  #{@checksum[:count_of_consonants]} - |
+  #{@checksum[:length_of_original_string]}
