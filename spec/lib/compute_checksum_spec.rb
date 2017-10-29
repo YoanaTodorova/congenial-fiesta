@@ -91,7 +91,7 @@ RSpec.describe ComputeChecksum do
           .upcase_vowel_after_consonants_and_upcase_vowel
       end
 
-      context 'when preceeding consonants are next to each other' do
+      context 'when preceding consonants are next to each other' do
         let(:string) { 'Thequickbr Ownfoxjump Soverthela Zydog' }
         let(:expected) { 'Thequickbr OwnfOxjUmp Soverthela Zydog' }
 
@@ -100,7 +100,7 @@ RSpec.describe ComputeChecksum do
         end
       end
 
-      context 'when preceeding consonants are separated by a whitespace' do
+      context 'when preceding consonants are separated by a whitespace' do
         let(:string) { 'childrEn do need freedom' }
         let(:unexpected) { 'childrEn dO need freedom' }
 
