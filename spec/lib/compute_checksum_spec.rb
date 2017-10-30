@@ -11,6 +11,8 @@ RSpec.describe ComputeChecksum do
     end
 
     context 'when a string is provided' do
+      subject { described_class.call(string: string) }
+
       context 'example 1' do
         let(:expected) do
           {
@@ -22,7 +24,6 @@ RSpec.describe ComputeChecksum do
           }
         end
         let(:string) { 'foo bar baz wibble fizzbuzz fizz buzz' }
-        subject { described_class.call(string: string) }
 
         it 'returns a hash of all checksums' do
           expect(subject).to eq(expected)
@@ -40,9 +41,25 @@ RSpec.describe ComputeChecksum do
           }
         end
         let(:string) { 'The quick brown fox jumps over the lazy dog' }
-        subject { described_class.call(string: string) }
 
         it 'returns a hash of all checksums' do
+          expect(subject).to eq(expected)
+        end
+      end
+
+      context 'when string contains newline characters' do
+        let(:expected) do
+          {
+            count_of_original_words: 7,
+            count_of_newly_created_words: 4,
+            count_of_upper_case_vowels: 5,
+            count_of_consonants: 21,
+            length_of_original_string: 43
+          }
+        end
+        let(:string) { "foo bar baz wibble \n  \n  fizzbuzz fizz buzz" }
+        
+        it 'removes newline characters and returns hash of all checksums' do
           expect(subject).to eq(expected)
         end
       end

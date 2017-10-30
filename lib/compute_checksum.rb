@@ -62,11 +62,11 @@ class ComputeChecksum
   end
 
   def remove_non_english_alphabet_characters
-    @modified_string.gsub!(/[^a-zA-Z ]/, '')
+    @modified_string.gsub!(/[^a-zA-Z[:space:]]/, '')
   end
 
   def split_into_limited_characters_strings(word_length: 10)
-    @modified_string = @modified_string.delete(' ')
+    @modified_string = @modified_string.gsub(/[[:space:]]/, '')
                                        .scan(/.{1,#{word_length}}/)
                                        .join(' ')
   end
